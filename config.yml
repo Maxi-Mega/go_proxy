@@ -1,0 +1,36 @@
+# The port the proxy will listen to
+proxy-port: 8083
+
+# The host the proxy will redirect to
+target-host: "https://golang.org"
+
+tls:
+  active: true
+
+  # The path to the certification file
+  cert-file: "certs/localhost.pem"
+
+  # The path to the certification key file
+  key-file: "certs/localhost-key.pem"
+
+headers:
+  # 'allow-only' just allows headers who are in the list to pass (wildcard: '*')
+  allow-only: [ "*" ]
+
+  # 'block-only' just blocks headers who are in the list (wildcard: '*')
+  block-only: [ "Accept-Encoding" ]
+
+  # 'replace' replaces the key by the corresponding value if the key is already present in the header
+  replace:
+    "User-Agent": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:87.0) Gecko/20100101 Firefox/87.0"
+    "Cookie": "cookiiie"
+
+  # 'set' sets a new entry 'key' in the header with the corresponding value if it is not present or overwrite the existing one if there is one
+  set:
+    "Secret-Key": "0123456789"
+
+url-blocking:
+  # Use '/lib/*' to block access to any resource under '/lib/'
+  - "/lib/godoc/images/*"
+  # Use '*.css' to block access to any 'css' resource
+  - "*.js"
