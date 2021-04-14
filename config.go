@@ -76,7 +76,7 @@ func parseConfigCli(target string, port string, tlsOpts Tls) Config {
 		ProxyPort:  uint16(proxyPort),
 		TargetHost: target,
 		Tls:        tlsOpts,
-		Headers:    Headers{Active: false},
+		Headers:    Headers{Active: false, CloneFilter: genHeaderFilter(Headers{})},
 		// Settings:   Settings{Active: false},
 	}
 }
@@ -145,11 +145,7 @@ func genHeaderFilter(headers Headers) func(header http.Header) http.Header {
 		}
 	} else {
 		return func(header http.Header) http.Header {
-			/*newHeader := http.Header{}
-			for h, v := range header {
-				newHeader[h] = v
-			}
-			return newHeader*/
+			delete(header, "Accept-Encoding")
 			return header.Clone()
 		}
 	}

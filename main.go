@@ -18,6 +18,7 @@ func main() {
 			os.Exit(0)
 		}
 	}
+
 	var config Config
 	var configFile string
 	setStringFlag(&configFile, "--conf", "", false, "The path to the configuration file")

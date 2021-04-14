@@ -1,7 +1,7 @@
 # Go Proxy
 
-This project is a golang written proxy, that redirect received request to a precise host. The proxy is able to listen
-https requests, if certifications file are provided.
+This project is a golang written proxy, that redirect received request to a precise host. The proxy is able to listen to
+https requests, if certification files are provided.
 
 A Yaml configuration file can be provided to replace command line arguments. It also contains a "headers" part which is
 used to allow, block, replace or set headers in each request. The config file also provide a "url-blocking" part for

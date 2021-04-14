@@ -28,7 +28,6 @@ func (proxy *Proxy) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintln(w, err)
 		return
 	}
-	// req.Header.Set("User-Agent", r.Header.Get("User-Agent"))
 	req.Header = proxy.config.Headers.CloneFilter(r.Header)
 
 	resp, err := http.DefaultClient.Do(req)
@@ -92,13 +91,3 @@ func (proxy *Proxy) IsUrlForbidden(url string) bool {
 	}
 	return false
 }
-
-/*func (proxy Proxy) cloneHeader(header http.Header) http.Header {
-	newHeader := http.Header{}
-	for k, v := range header {
-		if k != "Accept-Encoding" && k != "Cookie" {
-			newHeader[k] = v
-		}
-	}
-	return newHeader
-}*/
